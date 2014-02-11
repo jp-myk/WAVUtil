@@ -5,7 +5,7 @@ Simple WAV Utility Tool
 
 ## build tool
 ```
-@ make
+$ make
 ```
 
 ## WAV header print and read,write test
