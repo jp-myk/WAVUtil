@@ -2,7 +2,9 @@ WAVUtil
 =======
 
 Simple WAV Utility Tool
-mono, stereo, Bit(8,16), combine, trim, split
+
+- channels(1 or 2), bit(8 or16)
+- combine, trim, split
 
 ## build tool
 ```
