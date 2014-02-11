@@ -3,6 +3,7 @@ WAVUtil
 
 Simple WAV Utility Tool
 
+- only linear PCM
 - channels(1 or 2), bit(8 or16)
 - combine, trim, split
 
