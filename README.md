@@ -25,5 +25,5 @@ $ ./bin/wav_trim data/test.wav data/test.trim.wav 1.000 5.014
 
 ## WAV split
 ```
-$ ./bin/wav_trim data/test.wav data/split 3.000
+$ ./bin/wav_split data/test.wav data/split 3.000
 ```
