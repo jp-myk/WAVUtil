@@ -1,7 +1,7 @@
 WAVUtil
 =======
 
-Simple WAV Utility Tool
+Simple WAV Utility Tool,  read,write,combine,trim,split
 
 - only linear PCM
 - channels(1 or 2), bit(8 or16)
