@@ -1,7 +1,7 @@
 #include "WAV.h"
 
 WAV::WAV(const WAV& other){
-  init();
+  //init();
   this->createHeader(other.getChannels(), other.getSampleRate(), other.getBit());
     if(this->setData(other.getData(), other.getDataSize())!=0){
       printLOG("copy constructor error.");
