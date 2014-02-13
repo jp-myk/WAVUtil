@@ -1,7 +1,8 @@
 #include "WAV.h"
 
 WAV::WAV(const WAV& other){
-    this->createHeader(other.getChannels(), other.getSampleRate(), other.getBit());
+  init();
+  this->createHeader(other.getChannels(), other.getSampleRate(), other.getBit());
     if(this->setData(other.getData(), other.getDataSize())!=0){
       printLOG("copy constructor error.");
       exit(-1);
@@ -18,10 +19,9 @@ WAV& WAV::operator=( const WAV& other ){
   return *this;
 }
 int WAV::freeWAVData(){
-  _dataSize=0;
-  _sampleCount=0;
   try{
     if(_monoral8!=(Monoral8*)NULL){ 
+      std::cout << "free monoral8" << std::endl;
       free(_monoral8);
     }
     if(_monoral16!=(Monoral16*)NULL){
@@ -38,6 +38,12 @@ int WAV::freeWAVData(){
     printf("%s\n", e);
     exit(-1);
   }
+  //_dataSize=0;
+  //_sampleCount=0;
+  _monoral8=(Monoral8*)NULL;
+  _monoral16=(Monoral16*)NULL;
+  _stereo8=(Stereo8*)NULL;
+  _stereo16=(Stereo16*)NULL;
   return 0;
 }
 
@@ -211,15 +217,15 @@ int WAV::Read(const char* WAVFName){
 
 
 int WAV::setData(const void *data, unsigned int dataSize){
-  freeWAVData(); // 初期化
+  //freeWAVData(); // 初期化
   _dataSize=dataSize;
   _size=_dataSize+36;
   //モノラルならサンプル数を、ステレオなら左右１サンプルずつの組の数
   _sampleCount=_dataSize / (_channels*(_bit/8));
-  //_monoral8=NULL;
-  //_monoral16=NULL;
-  //_stereo8=NULL;
-  //_stereo16=NULL;
+  _monoral8=(Monoral8*)NULL;
+  _monoral16=(Monoral16*)NULL;
+  _stereo8=(Stereo8*)NULL;
+  _stereo16=(Stereo16*)NULL;
   try{
     if(_channels==1){
       if(_bit==8){

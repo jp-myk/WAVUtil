@@ -27,21 +27,6 @@ typedef struct{
 class WAV{
  private:
   int freeWAVData();
- public:
-  WAV(){
-    _monoral8=(Monoral8*)NULL;
-    _monoral16=(Monoral16*)NULL;
-    _stereo8=(Stereo8*)NULL;
-    _stereo16=(Stereo16*)NULL;
-  };
-  ~WAV(){
-    freeWAVData();
-  };
-  WAV(const WAV& other); // copy constructor 
-  WAV& operator=( const WAV& other ); // = operator
-  bool empty(){
-    return _dataSize==0 ? true : false;
-  }
   // HEADER
   char _riffID[4]; // "riff"
   unsigned int _size;  // ファイルサイズ-8
@@ -63,6 +48,34 @@ class WAV{
   Monoral16 *_monoral16;
   Stereo8 *_stereo8;
   Stereo16 *_stereo16;
+  void init(){
+    _size=0;
+    _fmtSize=16;
+    _format=1;
+    _channels=2;
+    _sampleRate=44100;
+    _bytePerSec=32000;
+    _blockSize=2;
+    _bit=16;
+    _dataSize=0;
+    _sampleCount=0;
+  }
+ public:
+  WAV(){
+    init();
+    _monoral8=(Monoral8*)NULL;
+    _monoral16=(Monoral16*)NULL;
+    _stereo8=(Stereo8*)NULL;
+    _stereo16=(Stereo16*)NULL;
+  };
+  ~WAV(){
+    freeWAVData();
+  };
+  WAV(const WAV& other); // copy constructor 
+  WAV& operator=( const WAV& other ); // = operator
+  bool empty(){
+    return _dataSize==0 ? true : false;
+  }
   
   // Method
   int Read(const char* WAVFName);

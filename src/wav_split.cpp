@@ -16,9 +16,9 @@ int main(int argc, char *argv[]){
   res=wav.Read(wavFName);
   std::cout << "split!" << std::endl;
   wavList=SimpleWAV::split_wav(splitTime, wav); // extra 0.0 - 1.00[sec]
+  
   int i=0;
   char outfname[100];
-  //exit(0);
   for(it=wavList.begin();it!=wavList.end();++it){
     sprintf(outfname, "%s.%d.wav", prefix.c_str(), i);
     it->Write(outfname);

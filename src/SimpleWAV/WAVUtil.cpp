@@ -38,7 +38,8 @@ std::vector<WAV> split_wav(float timespan_sec, WAV& wav){
     printf("set time span[%.3f] is longer than data[%.3f]", timespan_sec,dataLen_sec);
     exit(-1);
   }
-  
+  int wav_num=(int)dataLen_sec/timespan_sec+1;
+  retval.reserve(wav_num);
   
   // last splitted wav is adjusted by left time.
   float startTime=0.0;

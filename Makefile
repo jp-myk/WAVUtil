@@ -1,8 +1,8 @@
 #!/bin/make
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -O3 -Wall
 CXX = g++
-CXXFLAGS = -g -Wall
+CXXFLAGS = -O3 -Wall
 SRC=./src
 LIBS=
 INCLUDES=-I$(SRC)
