@@ -12,7 +12,7 @@ SIMPLE_WAV_OBJS=$(SRC)/SimpleWAV/WAV.o $(SRC)/SimpleWAV/WAVUtil.o
 .PHONY: all clean
 .SUFFIXES: .c .cpp .o
 
-all: make_bindir wav_test wav_combine wav_trim wav_split
+all: make_bindir wav_test wav_combine wav_trim wav_split wav_cat
 
 make_bindir:
 	mkdir -p bin
@@ -29,6 +29,9 @@ wav_trim: $(SIMPLE_WAV_OBJS) $(SRC)/wav_trim.o
 	$(CXX) $(CXXFLAGS)  -o bin/$@  $^ $(LIBS) $(LDFLAGS) $(INCLUDES)
 
 wav_split: $(SIMPLE_WAV_OBJS) $(SRC)/wav_split.o 
+	$(CXX) $(CXXFLAGS)  -o bin/$@  $^ $(LIBS) $(LDFLAGS) $(INCLUDES)
+
+wav_cat: $(SIMPLE_WAV_OBJS) $(SRC)/wav_cat.o 
 	$(CXX) $(CXXFLAGS)  -o bin/$@  $^ $(LIBS) $(LDFLAGS) $(INCLUDES)
 
 clean:

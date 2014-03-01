@@ -212,7 +212,7 @@ int WAV::Read(const char* WAVFName){
 
   
   ifs.close();
-  return -1;
+  return 0;
 }
 
 

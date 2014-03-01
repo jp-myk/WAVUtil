@@ -97,4 +97,49 @@ int combine_wav(WAV& wav1, WAV& wav2, WAV& outwav){
   return 0;
 }
 
+
+//
+// cat wav audio signal data
+//
+int cat_wav(WAV& wav){
+  //void* data;
+  //int res=0;
+  if(wav.getChannels() == 1){
+    if(wav.getBit() == 8){
+      Monoral8* data=(Monoral8*)wav.getData();
+      for(unsigned long i=0;i<wav.getSampleCount();i++){
+	printf("%d\n",(unsigned char)data[i]);
+      }
+    }else if(wav.getBit() == 16){
+      Monoral16* data=(Monoral16*)wav.getData();
+      for(unsigned long i=0;i<wav.getSampleCount();i++){
+	printf("%d\n",(signed short)data[i]);
+      }
+    }else{
+      printLOG("error bit must be 8 or 16");
+      exit(-1);
+    }
+  }else if(wav.getChannels() == 2){
+    if(wav.getBit() == 8){
+      Stereo8* data=(Stereo8*)wav.getData();
+      for(unsigned long i=0;i<wav.getSampleCount();i++){
+	printf("%d\t%d\n",(unsigned char)data[i].l, (unsigned char)data[i].r);
+      }
+    }else if(wav.getBit() == 16){
+      Stereo16* data=(Stereo16*)wav.getData();
+      for(unsigned long i=0;i<wav.getSampleCount();i++){
+	printf("%d\t%d\n",(signed short)data[i].l, (signed short)data[i].r);
+      }
+    }else{
+      printLOG("error bit must be 8 or 16");
+      exit(-1);
+    }
+
+  }else{
+    printLOG("wav channel must set monoral");
+    return -1;
+  }
+  return 0;
+}
+
 }

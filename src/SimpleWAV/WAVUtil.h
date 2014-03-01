@@ -24,4 +24,9 @@ namespace SimpleWAV{
   // @return 0:success -1:error
   int combine_wav(WAV& wav1, WAV& wav2, WAV& outwav);
 
+  // @note wav audio signal cat
+  // @param1 input wav
+  // @return 0:success -1:error
+  int cat_wav(WAV& wav);
+
 }
